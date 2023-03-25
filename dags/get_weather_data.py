@@ -140,8 +140,8 @@ def merge_weather_data(**kwargs):
         raise
 
     logging.info("Saving merged file...")
-    merged_data.to_parquet(path=f"{base_output_path}/current/current_weather_data_merged")
-    logging.info(f"Saved file successfully at {base_output_path}/current/current_weather_data_merged")
+    merged_data.to_parquet(path=f"{base_output_path}/current/current_weather_data_merged.parquet")
+    logging.info(f"Saved file successfully at {base_output_path}/current/current_weather_data_merged.parquet")
 
 with DAG(
     dag_id="get_weather_data_v0",
