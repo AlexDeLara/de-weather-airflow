@@ -1,0 +1,31 @@
+[2023-03-25T23:22:57.468+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: get_weather_data_v0.download_weather_data scheduled__2023-03-25T22:00:00+00:00 [queued]>
+[2023-03-25T23:22:57.475+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: get_weather_data_v0.download_weather_data scheduled__2023-03-25T22:00:00+00:00 [queued]>
+[2023-03-25T23:22:57.476+0000] {taskinstance.py:1282} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T23:22:57.476+0000] {taskinstance.py:1283} INFO - Starting attempt 4 of 7
+[2023-03-25T23:22:57.476+0000] {taskinstance.py:1284} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T23:22:57.496+0000] {taskinstance.py:1303} INFO - Executing <Task(PythonOperator): download_weather_data> on 2023-03-25 22:00:00+00:00
+[2023-03-25T23:22:57.501+0000] {standard_task_runner.py:55} INFO - Started process 340 to run task
+[2023-03-25T23:22:57.505+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'get_weather_data_v0', 'download_weather_data', 'scheduled__2023-03-25T22:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/get_weather_data.py', '--cfg-path', '/tmp/tmpajzs2pzq']
+[2023-03-25T23:22:57.508+0000] {standard_task_runner.py:83} INFO - Job 6: Subtask download_weather_data
+[2023-03-25T23:22:57.592+0000] {task_command.py:388} INFO - Running <TaskInstance: get_weather_data_v0.download_weather_data scheduled__2023-03-25T22:00:00+00:00 [running]> on host 377ca406d6db
+[2023-03-25T23:22:57.683+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=AlexDeLara
+AIRFLOW_CTX_DAG_ID=get_weather_data_v0
+AIRFLOW_CTX_TASK_ID=download_weather_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-25T22:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=4
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-25T22:00:00+00:00
+[2023-03-25T23:22:57.768+0000] {get_weather_data.py:48} INFO - Decompressing .gz weather data...
+[2023-03-25T23:22:57.799+0000] {get_weather_data.py:50} INFO - Decompression successful!
+[2023-03-25T23:22:57.799+0000] {get_weather_data.py:57} INFO - Parsing json weather data...
+[2023-03-25T23:22:57.909+0000] {get_weather_data.py:59} INFO - Parsing successful!
+[2023-03-25T23:22:57.910+0000] {get_weather_data.py:72} INFO - Writing current data...
+[2023-03-25T23:22:58.000+0000] {get_weather_data.py:74} INFO - Successfully created current_weather_data.parquet file!...
+[2023-03-25T23:22:58.000+0000] {get_weather_data.py:76} INFO - Appending to historic data...
+[2023-03-25T23:22:58.017+0000] {get_weather_data.py:83} INFO - Successfully appended new data to historic_weather_data.parquet file!
+[2023-03-25T23:22:58.021+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-03-25T23:22:58.031+0000] {taskinstance.py:1326} INFO - Marking task as SUCCESS. dag_id=get_weather_data_v0, task_id=download_weather_data, execution_date=20230325T220000, start_date=20230325T232257, end_date=20230325T232258
+[2023-03-25T23:22:58.077+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-03-25T23:22:58.129+0000] {taskinstance.py:2585} INFO - 1 downstream tasks scheduled from follow-on schedule check

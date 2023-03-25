@@ -31,6 +31,8 @@ $ docker compose up
 - Username and password are both _airflow_  
 - There is a single DAG available that orchestrates each one of the ETL tasks  
 - Logs are provided for each DAG execution with custom additional logging information  
+- Enable the DAG and trigger a manual execution if necessary  
+- **IMPORTANT**: If execution fails, DO NOT force another manual execution. Otherwise, the service will reject the connection. Wait at least 5-10 minutes to retry  
 
 ## Sidenotes
 - Due to permission errors, the output data folder was created inside the dags folder  
