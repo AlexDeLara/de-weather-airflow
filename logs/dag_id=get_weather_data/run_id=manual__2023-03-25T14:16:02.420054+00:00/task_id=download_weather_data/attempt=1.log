@@ -1,0 +1,34 @@
+[2023-03-25T14:16:03.371+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: get_weather_data.download_weather_data manual__2023-03-25T14:16:02.420054+00:00 [queued]>
+[2023-03-25T14:16:03.381+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: get_weather_data.download_weather_data manual__2023-03-25T14:16:02.420054+00:00 [queued]>
+[2023-03-25T14:16:03.381+0000] {taskinstance.py:1282} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T14:16:03.381+0000] {taskinstance.py:1283} INFO - Starting attempt 1 of 6
+[2023-03-25T14:16:03.381+0000] {taskinstance.py:1284} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T14:16:03.394+0000] {taskinstance.py:1303} INFO - Executing <Task(PythonOperator): download_weather_data> on 2023-03-25 14:16:02.420054+00:00
+[2023-03-25T14:16:03.398+0000] {standard_task_runner.py:55} INFO - Started process 309 to run task
+[2023-03-25T14:16:03.401+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'get_weather_data', 'download_weather_data', 'manual__2023-03-25T14:16:02.420054+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/get_weather_data.py', '--cfg-path', '/tmp/tmp7u_9652i']
+[2023-03-25T14:16:03.403+0000] {standard_task_runner.py:83} INFO - Job 6: Subtask download_weather_data
+[2023-03-25T14:16:03.486+0000] {task_command.py:388} INFO - Running <TaskInstance: get_weather_data.download_weather_data manual__2023-03-25T14:16:02.420054+00:00 [running]> on host f9474b81b935
+[2023-03-25T14:16:03.561+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=AlexDeLara
+AIRFLOW_CTX_DAG_ID=get_weather_data
+AIRFLOW_CTX_TASK_ID=download_weather_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-25T14:16:02.420054+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-25T14:16:02.420054+00:00
+[2023-03-25T14:16:04.616+0000] {get_weather_data.py:70} ERROR - An error occurred when trying to retrieve the weather data. Error:
+decompress_data() got an unexpected keyword argument 'data'
+[2023-03-25T14:16:04.616+0000] {taskinstance.py:1775} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/get_weather_data.py", line 63, in download_weather_data
+    json_data = decompress_data(data=response.content)
+TypeError: decompress_data() got an unexpected keyword argument 'data'
+[2023-03-25T14:16:04.629+0000] {taskinstance.py:1326} INFO - Marking task as UP_FOR_RETRY. dag_id=get_weather_data, task_id=download_weather_data, execution_date=20230325T141602, start_date=20230325T141603, end_date=20230325T141604
+[2023-03-25T14:16:04.649+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 6 for task download_weather_data (decompress_data() got an unexpected keyword argument 'data'; 309)
+[2023-03-25T14:16:04.696+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-03-25T14:16:04.713+0000] {taskinstance.py:2585} INFO - 0 downstream tasks scheduled from follow-on schedule check

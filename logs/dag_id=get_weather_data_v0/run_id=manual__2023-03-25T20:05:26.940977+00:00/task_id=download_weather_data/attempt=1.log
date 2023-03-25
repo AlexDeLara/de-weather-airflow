@@ -1,0 +1,59 @@
+[2023-03-25T20:05:28.121+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: get_weather_data_v0.download_weather_data manual__2023-03-25T20:05:26.940977+00:00 [queued]>
+[2023-03-25T20:05:28.138+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: get_weather_data_v0.download_weather_data manual__2023-03-25T20:05:26.940977+00:00 [queued]>
+[2023-03-25T20:05:28.139+0000] {taskinstance.py:1282} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T20:05:28.139+0000] {taskinstance.py:1283} INFO - Starting attempt 1 of 6
+[2023-03-25T20:05:28.139+0000] {taskinstance.py:1284} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T20:05:28.171+0000] {taskinstance.py:1303} INFO - Executing <Task(PythonOperator): download_weather_data> on 2023-03-25 20:05:26.940977+00:00
+[2023-03-25T20:05:28.180+0000] {standard_task_runner.py:55} INFO - Started process 307 to run task
+[2023-03-25T20:05:28.184+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'get_weather_data_v0', 'download_weather_data', 'manual__2023-03-25T20:05:26.940977+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/get_weather_data.py', '--cfg-path', '/tmp/tmpxfxi66o0']
+[2023-03-25T20:05:28.188+0000] {standard_task_runner.py:83} INFO - Job 5: Subtask download_weather_data
+[2023-03-25T20:05:28.295+0000] {task_command.py:388} INFO - Running <TaskInstance: get_weather_data_v0.download_weather_data manual__2023-03-25T20:05:26.940977+00:00 [running]> on host 38546e5f3183
+[2023-03-25T20:05:28.411+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=AlexDeLara
+AIRFLOW_CTX_DAG_ID=get_weather_data_v0
+AIRFLOW_CTX_TASK_ID=download_weather_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-25T20:05:26.940977+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-25T20:05:26.940977+00:00
+[2023-03-25T20:05:29.593+0000] {get_weather_data.py:45} INFO - Decompressing .gz weather data...
+[2023-03-25T20:05:29.630+0000] {get_weather_data.py:47} INFO - Decompression successful!
+[2023-03-25T20:05:29.631+0000] {get_weather_data.py:54} INFO - Parsing json weather data...
+[2023-03-25T20:05:29.847+0000] {get_weather_data.py:56} INFO - Parsing successful!
+[2023-03-25T20:05:29.879+0000] {logging_mixin.py:137} INFO -       cc      desciel  dh dirvienc  ...    raf   tmax   tmin  velvien
+0  21.86  Poco nuboso   6      Sur  ...  21.96  31.64  11.59     6.38
+1  24.29  Poco nuboso   6      Sur  ...  19.06  31.55  12.25     6.97
+2  13.22  Poco nuboso   6      Sur  ...  17.90  31.09  11.83     7.77
+3  19.72  Poco nuboso   6  Sureste  ...  18.88  31.05  13.97     7.00
+4  12.05  Poco nuboso   6      Sur  ...  16.89  30.37  13.38     6.30
+
+[5 rows x 19 columns]
+[2023-03-25T20:05:29.879+0000] {get_weather_data.py:69} INFO - Writing current data...
+[2023-03-25T20:05:29.986+0000] {get_weather_data.py:85} ERROR - An error occurred when trying to retrieve the weather data. Error:
+[Errno 2] No such file or directory: '/data/weather/raw/current_weather_data.parquet'
+[2023-03-25T20:05:29.986+0000] {taskinstance.py:1775} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/get_weather_data.py", line 70, in download_weather_data
+    data.to_parquet(path=f"{base_output_path}/raw/current_weather_data.parquet", engine="pyarrow", index=False)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/util/_decorators.py", line 207, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/frame.py", line 2685, in to_parquet
+    **kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parquet.py", line 423, in to_parquet
+    **kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parquet.py", line 180, in write
+    is_dir=partition_cols is not None,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parquet.py", line 102, in _get_path_or_handle
+    path_or_handle, mode, is_text=False, storage_options=storage_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/common.py", line 711, in get_handle
+    handle = open(handle, ioargs.mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/data/weather/raw/current_weather_data.parquet'
+[2023-03-25T20:05:29.998+0000] {taskinstance.py:1326} INFO - Marking task as UP_FOR_RETRY. dag_id=get_weather_data_v0, task_id=download_weather_data, execution_date=20230325T200526, start_date=20230325T200528, end_date=20230325T200529
+[2023-03-25T20:05:30.022+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 5 for task download_weather_data ([Errno 2] No such file or directory: '/data/weather/raw/current_weather_data.parquet'; 307)
+[2023-03-25T20:05:30.081+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-03-25T20:05:30.121+0000] {taskinstance.py:2585} INFO - 0 downstream tasks scheduled from follow-on schedule check

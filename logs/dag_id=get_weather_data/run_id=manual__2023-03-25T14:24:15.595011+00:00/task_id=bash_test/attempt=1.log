@@ -1,0 +1,28 @@
+[2023-03-25T14:24:16.427+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: get_weather_data.bash_test manual__2023-03-25T14:24:15.595011+00:00 [queued]>
+[2023-03-25T14:24:16.436+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: get_weather_data.bash_test manual__2023-03-25T14:24:15.595011+00:00 [queued]>
+[2023-03-25T14:24:16.436+0000] {taskinstance.py:1282} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T14:24:16.436+0000] {taskinstance.py:1283} INFO - Starting attempt 1 of 6
+[2023-03-25T14:24:16.436+0000] {taskinstance.py:1284} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T14:24:16.449+0000] {taskinstance.py:1303} INFO - Executing <Task(BashOperator): bash_test> on 2023-03-25 14:24:15.595011+00:00
+[2023-03-25T14:24:16.453+0000] {standard_task_runner.py:55} INFO - Started process 522 to run task
+[2023-03-25T14:24:16.456+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'get_weather_data', 'bash_test', 'manual__2023-03-25T14:24:15.595011+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/get_weather_data.py', '--cfg-path', '/tmp/tmp1bb1faxm']
+[2023-03-25T14:24:16.458+0000] {standard_task_runner.py:83} INFO - Job 8: Subtask bash_test
+[2023-03-25T14:24:16.536+0000] {task_command.py:388} INFO - Running <TaskInstance: get_weather_data.bash_test manual__2023-03-25T14:24:15.595011+00:00 [running]> on host f9474b81b935
+[2023-03-25T14:24:16.624+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=AlexDeLara
+AIRFLOW_CTX_DAG_ID=get_weather_data
+AIRFLOW_CTX_TASK_ID=bash_test
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-25T14:24:15.595011+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-25T14:24:15.595011+00:00
+[2023-03-25T14:24:16.625+0000] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2023-03-25T14:24:16.626+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'pwd']
+[2023-03-25T14:24:16.639+0000] {subprocess.py:86} INFO - Output:
+[2023-03-25T14:24:16.640+0000] {subprocess.py:93} INFO - /tmp/***tmptr62k2q2
+[2023-03-25T14:24:16.641+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2023-03-25T14:24:16.666+0000] {taskinstance.py:1326} INFO - Marking task as SUCCESS. dag_id=get_weather_data, task_id=bash_test, execution_date=20230325T142415, start_date=20230325T142416, end_date=20230325T142416
+[2023-03-25T14:24:16.707+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-03-25T14:24:16.723+0000] {taskinstance.py:2585} INFO - 0 downstream tasks scheduled from follow-on schedule check

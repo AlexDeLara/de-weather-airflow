@@ -1,0 +1,88 @@
+[2023-03-25T14:48:45.439+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: get_weather_data.download_weather_data scheduled__2023-03-25T01:00:00+00:00 [queued]>
+[2023-03-25T14:48:45.451+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: get_weather_data.download_weather_data scheduled__2023-03-25T01:00:00+00:00 [queued]>
+[2023-03-25T14:48:45.451+0000] {taskinstance.py:1282} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T14:48:45.451+0000] {taskinstance.py:1283} INFO - Starting attempt 1 of 6
+[2023-03-25T14:48:45.451+0000] {taskinstance.py:1284} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T14:48:45.467+0000] {taskinstance.py:1303} INFO - Executing <Task(PythonOperator): download_weather_data> on 2023-03-25 01:00:00+00:00
+[2023-03-25T14:48:45.473+0000] {standard_task_runner.py:55} INFO - Started process 253 to run task
+[2023-03-25T14:48:45.478+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'get_weather_data', 'download_weather_data', 'scheduled__2023-03-25T01:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/get_weather_data.py', '--cfg-path', '/tmp/tmpxi0uhdut']
+[2023-03-25T14:48:45.480+0000] {standard_task_runner.py:83} INFO - Job 5: Subtask download_weather_data
+[2023-03-25T14:48:45.559+0000] {task_command.py:388} INFO - Running <TaskInstance: get_weather_data.download_weather_data scheduled__2023-03-25T01:00:00+00:00 [running]> on host dbbe6b1163d2
+[2023-03-25T14:48:45.641+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=AlexDeLara
+AIRFLOW_CTX_DAG_ID=get_weather_data
+AIRFLOW_CTX_TASK_ID=download_weather_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-25T01:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-25T01:00:00+00:00
+[2023-03-25T14:48:46.403+0000] {get_weather_data.py:84} ERROR - An error occurred when trying to retrieve the weather data. Error:
+Could not retrieve weather data. Response code: {response.status_code}.
+Response message: {response.text}
+[2023-03-25T14:48:46.404+0000] {taskinstance.py:1775} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/get_weather_data.py", line 81, in download_weather_data
+    raise ValueError("Could not retrieve weather data. Response code: {response.status_code}.\nResponse message: {response.text}")
+ValueError: Could not retrieve weather data. Response code: {response.status_code}.
+Response message: {response.text}
+[2023-03-25T14:48:46.418+0000] {taskinstance.py:1326} INFO - Marking task as UP_FOR_RETRY. dag_id=get_weather_data, task_id=download_weather_data, execution_date=20230325T010000, start_date=20230325T144845, end_date=20230325T144846
+[2023-03-25T14:48:46.440+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 5 for task download_weather_data (Could not retrieve weather data. Response code: {response.status_code}.
+Response message: {response.text}; 253)
+[2023-03-25T14:48:46.493+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-03-25T14:48:46.531+0000] {taskinstance.py:2585} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-03-25T19:30:20.856+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: get_weather_data.download_weather_data scheduled__2023-03-25T01:00:00+00:00 [queued]>
+[2023-03-25T19:30:20.871+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: get_weather_data.download_weather_data scheduled__2023-03-25T01:00:00+00:00 [queued]>
+[2023-03-25T19:30:20.871+0000] {taskinstance.py:1282} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T19:30:20.872+0000] {taskinstance.py:1283} INFO - Starting attempt 1 of 6
+[2023-03-25T19:30:20.872+0000] {taskinstance.py:1284} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T19:30:20.895+0000] {taskinstance.py:1303} INFO - Executing <Task(PythonOperator): download_weather_data> on 2023-03-25 01:00:00+00:00
+[2023-03-25T19:30:20.901+0000] {standard_task_runner.py:55} INFO - Started process 209 to run task
+[2023-03-25T19:30:20.904+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'get_weather_data', 'download_weather_data', 'scheduled__2023-03-25T01:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/get_weather_data.py', '--cfg-path', '/tmp/tmpijh25zd9']
+[2023-03-25T19:30:20.906+0000] {standard_task_runner.py:83} INFO - Job 4: Subtask download_weather_data
+[2023-03-25T19:30:20.982+0000] {task_command.py:388} INFO - Running <TaskInstance: get_weather_data.download_weather_data scheduled__2023-03-25T01:00:00+00:00 [running]> on host 81679e29af39
+[2023-03-25T19:30:21.109+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=AlexDeLara
+AIRFLOW_CTX_DAG_ID=get_weather_data
+AIRFLOW_CTX_TASK_ID=download_weather_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-25T01:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-25T01:00:00+00:00
+[2023-03-25T19:30:23.743+0000] {get_weather_data.py:45} INFO - Decompressing .gz weather data...
+[2023-03-25T19:30:23.770+0000] {get_weather_data.py:47} INFO - Decompression successful!
+[2023-03-25T19:30:23.770+0000] {get_weather_data.py:54} INFO - Parsing json weather data...
+[2023-03-25T19:30:24.244+0000] {get_weather_data.py:56} INFO - Parsing successful!
+[2023-03-25T19:30:24.245+0000] {get_weather_data.py:68} INFO - Writing current data...
+[2023-03-25T19:30:24.246+0000] {get_weather_data.py:84} ERROR - An error occurred when trying to retrieve the weather data. Error:
+Missing optional dependency 'fastparquet'. fastparquet is required for parquet support. Use pip or conda to install fastparquet.
+[2023-03-25T19:30:24.246+0000] {taskinstance.py:1775} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/get_weather_data.py", line 69, in download_weather_data
+    data.to_parquet(path=f"{base_output_path}/current_weather_data.parquet", engine="fastparquet", index=False)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/util/_decorators.py", line 207, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/frame.py", line 2685, in to_parquet
+    **kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parquet.py", line 412, in to_parquet
+    impl = get_engine(engine)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parquet.py", line 66, in get_engine
+    return FastParquetImpl()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parquet.py", line 255, in __init__
+    "fastparquet", extra="fastparquet is required for parquet support."
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/compat/_optional.py", line 118, in import_optional_dependency
+    raise ImportError(msg) from None
+ImportError: Missing optional dependency 'fastparquet'. fastparquet is required for parquet support. Use pip or conda to install fastparquet.
+[2023-03-25T19:30:24.273+0000] {taskinstance.py:1326} INFO - Marking task as UP_FOR_RETRY. dag_id=get_weather_data, task_id=download_weather_data, execution_date=20230325T010000, start_date=20230325T193020, end_date=20230325T193024
+[2023-03-25T19:30:24.304+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 4 for task download_weather_data (Missing optional dependency 'fastparquet'. fastparquet is required for parquet support. Use pip or conda to install fastparquet.; 209)
+[2023-03-25T19:30:24.355+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-03-25T19:30:24.394+0000] {taskinstance.py:2585} INFO - 0 downstream tasks scheduled from follow-on schedule check

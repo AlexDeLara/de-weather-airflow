@@ -1,0 +1,34 @@
+[2023-03-25T22:31:15.955+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: get_weather_data_v0.merge_weather_data scheduled__2023-03-25T21:00:00+00:00 [queued]>
+[2023-03-25T22:31:15.964+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: get_weather_data_v0.merge_weather_data scheduled__2023-03-25T21:00:00+00:00 [queued]>
+[2023-03-25T22:31:15.964+0000] {taskinstance.py:1282} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T22:31:15.964+0000] {taskinstance.py:1283} INFO - Starting attempt 1 of 6
+[2023-03-25T22:31:15.964+0000] {taskinstance.py:1284} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T22:31:15.985+0000] {taskinstance.py:1303} INFO - Executing <Task(PythonOperator): merge_weather_data> on 2023-03-25 21:00:00+00:00
+[2023-03-25T22:31:15.989+0000] {standard_task_runner.py:55} INFO - Started process 293 to run task
+[2023-03-25T22:31:15.993+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'get_weather_data_v0', 'merge_weather_data', 'scheduled__2023-03-25T21:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/get_weather_data.py', '--cfg-path', '/tmp/tmpqvc2ga7e']
+[2023-03-25T22:31:15.995+0000] {standard_task_runner.py:83} INFO - Job 5: Subtask merge_weather_data
+[2023-03-25T22:31:16.048+0000] {task_command.py:388} INFO - Running <TaskInstance: get_weather_data_v0.merge_weather_data scheduled__2023-03-25T21:00:00+00:00 [running]> on host 1e7d3c0923c5
+[2023-03-25T22:31:16.124+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=AlexDeLara
+AIRFLOW_CTX_DAG_ID=get_weather_data_v0
+AIRFLOW_CTX_TASK_ID=merge_weather_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-25T21:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-25T21:00:00+00:00
+[2023-03-25T22:31:16.180+0000] {taskinstance.py:1775} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/get_weather_data.py", line 123, in merge_weather_data
+    aux_data = pd.read_csv(path=f"{base_output_path}/current/raw_data_merge.csv")
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+TypeError: read_csv() got an unexpected keyword argument 'path'
+[2023-03-25T22:31:16.188+0000] {taskinstance.py:1326} INFO - Marking task as UP_FOR_RETRY. dag_id=get_weather_data_v0, task_id=merge_weather_data, execution_date=20230325T210000, start_date=20230325T223115, end_date=20230325T223116
+[2023-03-25T22:31:16.197+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 5 for task merge_weather_data (read_csv() got an unexpected keyword argument 'path'; 293)
+[2023-03-25T22:31:16.243+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-03-25T22:31:16.261+0000] {taskinstance.py:2585} INFO - 0 downstream tasks scheduled from follow-on schedule check

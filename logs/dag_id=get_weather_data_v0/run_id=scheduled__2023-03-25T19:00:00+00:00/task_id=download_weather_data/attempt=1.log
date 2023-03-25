@@ -1,0 +1,210 @@
+[2023-03-25T20:01:35.603+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: get_weather_data_v0.download_weather_data scheduled__2023-03-25T19:00:00+00:00 [queued]>
+[2023-03-25T20:01:35.617+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: get_weather_data_v0.download_weather_data scheduled__2023-03-25T19:00:00+00:00 [queued]>
+[2023-03-25T20:01:35.617+0000] {taskinstance.py:1282} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T20:01:35.617+0000] {taskinstance.py:1283} INFO - Starting attempt 1 of 6
+[2023-03-25T20:01:35.617+0000] {taskinstance.py:1284} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T20:01:35.646+0000] {taskinstance.py:1303} INFO - Executing <Task(PythonOperator): download_weather_data> on 2023-03-25 19:00:00+00:00
+[2023-03-25T20:01:35.655+0000] {standard_task_runner.py:55} INFO - Started process 210 to run task
+[2023-03-25T20:01:35.659+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'get_weather_data_v0', 'download_weather_data', 'scheduled__2023-03-25T19:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/get_weather_data.py', '--cfg-path', '/tmp/tmpt96xhbmu']
+[2023-03-25T20:01:35.662+0000] {standard_task_runner.py:83} INFO - Job 3: Subtask download_weather_data
+[2023-03-25T20:01:35.777+0000] {task_command.py:388} INFO - Running <TaskInstance: get_weather_data_v0.download_weather_data scheduled__2023-03-25T19:00:00+00:00 [running]> on host 38546e5f3183
+[2023-03-25T20:01:35.904+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=AlexDeLara
+AIRFLOW_CTX_DAG_ID=get_weather_data_v0
+AIRFLOW_CTX_TASK_ID=download_weather_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-25T19:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-25T19:00:00+00:00
+[2023-03-25T20:01:37.207+0000] {get_weather_data.py:85} ERROR - An error occurred when trying to retrieve the weather data. Error:
+Could not retrieve weather data. Response code: 404.
+Response message: <!DOCTYPE html>
+<html lang="es-es" dir="ltr">
+<head>
+	<meta charset="utf-8" />
+	<title>404 - Artículo no encontrado</title>
+	<link href="/templates/system/css/error.css" rel="stylesheet" />
+			<!--[if lt IE 9]><script src="/media/jui/js/html5.js"></script><![endif]-->
+</head>
+<body>
+	<div class="error">
+		<div id="outline">
+		<div id="errorboxoutline">
+			<div id="errorboxheader">404 - Artículo no encontrado</div>
+			<div id="errorboxbody">
+			<p><strong>No puede visitar esta página debido a:</strong></p>
+			<ol>
+				<li>Un <strong>marcador o favorito caducado</strong></li>
+				<li>Un motor de búsquedas que tiene un <strong>listado caducado para este sitio</strong></li>
+				<li>Una <strong>dirección mal escrita</strong></li>
+				<li>Usted no tiene <strong>acceso</strong> a esta página</li>
+				<li>No se pudo encontrar el recurso solicitado.</li>
+				<li>Se ha producido un error mientras se procesaba su solicitud.</li>
+			</ol>
+			<p><strong>Por favor, pruebe con alguna de las páginas siguientes:</strong></p>
+			<ul>
+				<li><a href="/index.php" title="Ir a la página de inicio">Página de inicio</a></li>
+			</ul>
+			<p>Si la dificultad persiste, por favor, contacte con el administrador del sistema de este sitio y reporte el error de más abajo.</p>
+			<div id="techinfo">
+			<p>
+				Artículo no encontrado							</p>
+						</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
+
+[2023-03-25T20:01:37.208+0000] {taskinstance.py:1775} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/get_weather_data.py", line 82, in download_weather_data
+    raise ValueError(f"Could not retrieve weather data. Response code: {response.status_code}.\nResponse message: {response.text}")
+ValueError: Could not retrieve weather data. Response code: 404.
+Response message: <!DOCTYPE html>
+<html lang="es-es" dir="ltr">
+<head>
+	<meta charset="utf-8" />
+	<title>404 - Artículo no encontrado</title>
+	<link href="/templates/system/css/error.css" rel="stylesheet" />
+			<!--[if lt IE 9]><script src="/media/jui/js/html5.js"></script><![endif]-->
+</head>
+<body>
+	<div class="error">
+		<div id="outline">
+		<div id="errorboxoutline">
+			<div id="errorboxheader">404 - Artículo no encontrado</div>
+			<div id="errorboxbody">
+			<p><strong>No puede visitar esta página debido a:</strong></p>
+			<ol>
+				<li>Un <strong>marcador o favorito caducado</strong></li>
+				<li>Un motor de búsquedas que tiene un <strong>listado caducado para este sitio</strong></li>
+				<li>Una <strong>dirección mal escrita</strong></li>
+				<li>Usted no tiene <strong>acceso</strong> a esta página</li>
+				<li>No se pudo encontrar el recurso solicitado.</li>
+				<li>Se ha producido un error mientras se procesaba su solicitud.</li>
+			</ol>
+			<p><strong>Por favor, pruebe con alguna de las páginas siguientes:</strong></p>
+			<ul>
+				<li><a href="/index.php" title="Ir a la página de inicio">Página de inicio</a></li>
+			</ul>
+			<p>Si la dificultad persiste, por favor, contacte con el administrador del sistema de este sitio y reporte el error de más abajo.</p>
+			<div id="techinfo">
+			<p>
+				Artículo no encontrado							</p>
+						</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
+
+[2023-03-25T20:01:37.223+0000] {taskinstance.py:1326} INFO - Marking task as UP_FOR_RETRY. dag_id=get_weather_data_v0, task_id=download_weather_data, execution_date=20230325T190000, start_date=20230325T200135, end_date=20230325T200137
+[2023-03-25T20:01:37.252+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 3 for task download_weather_data (Could not retrieve weather data. Response code: 404.
+Response message: <!DOCTYPE html>
+<html lang="es-es" dir="ltr">
+<head>
+	<meta charset="utf-8" />
+	<title>404 - Artículo no encontrado</title>
+	<link href="/templates/system/css/error.css" rel="stylesheet" />
+			<!--[if lt IE 9]><script src="/media/jui/js/html5.js"></script><![endif]-->
+</head>
+<body>
+	<div class="error">
+		<div id="outline">
+		<div id="errorboxoutline">
+			<div id="errorboxheader">404 - Artículo no encontrado</div>
+			<div id="errorboxbody">
+			<p><strong>No puede visitar esta página debido a:</strong></p>
+			<ol>
+				<li>Un <strong>marcador o favorito caducado</strong></li>
+				<li>Un motor de búsquedas que tiene un <strong>listado caducado para este sitio</strong></li>
+				<li>Una <strong>dirección mal escrita</strong></li>
+				<li>Usted no tiene <strong>acceso</strong> a esta página</li>
+				<li>No se pudo encontrar el recurso solicitado.</li>
+				<li>Se ha producido un error mientras se procesaba su solicitud.</li>
+			</ol>
+			<p><strong>Por favor, pruebe con alguna de las páginas siguientes:</strong></p>
+			<ul>
+				<li><a href="/index.php" title="Ir a la página de inicio">Página de inicio</a></li>
+			</ul>
+			<p>Si la dificultad persiste, por favor, contacte con el administrador del sistema de este sitio y reporte el error de más abajo.</p>
+			<div id="techinfo">
+			<p>
+				Artículo no encontrado							</p>
+						</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
+; 210)
+[2023-03-25T20:01:37.316+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-03-25T20:01:37.357+0000] {taskinstance.py:2585} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-03-25T20:18:42.113+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: get_weather_data_v0.download_weather_data scheduled__2023-03-25T19:00:00+00:00 [queued]>
+[2023-03-25T20:18:42.129+0000] {taskinstance.py:1084} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: get_weather_data_v0.download_weather_data scheduled__2023-03-25T19:00:00+00:00 [queued]>
+[2023-03-25T20:18:42.130+0000] {taskinstance.py:1282} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T20:18:42.130+0000] {taskinstance.py:1283} INFO - Starting attempt 1 of 6
+[2023-03-25T20:18:42.130+0000] {taskinstance.py:1284} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-25T20:18:42.150+0000] {taskinstance.py:1303} INFO - Executing <Task(PythonOperator): download_weather_data> on 2023-03-25 19:00:00+00:00
+[2023-03-25T20:18:42.157+0000] {standard_task_runner.py:55} INFO - Started process 210 to run task
+[2023-03-25T20:18:42.161+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'get_weather_data_v0', 'download_weather_data', 'scheduled__2023-03-25T19:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/get_weather_data.py', '--cfg-path', '/tmp/tmpfe8qvzcy']
+[2023-03-25T20:18:42.163+0000] {standard_task_runner.py:83} INFO - Job 3: Subtask download_weather_data
+[2023-03-25T20:18:42.253+0000] {task_command.py:388} INFO - Running <TaskInstance: get_weather_data_v0.download_weather_data scheduled__2023-03-25T19:00:00+00:00 [running]> on host 2414b9086979
+[2023-03-25T20:18:42.356+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=AlexDeLara
+AIRFLOW_CTX_DAG_ID=get_weather_data_v0
+AIRFLOW_CTX_TASK_ID=download_weather_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-25T19:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-25T19:00:00+00:00
+[2023-03-25T20:18:43.556+0000] {get_weather_data.py:45} INFO - Decompressing .gz weather data...
+[2023-03-25T20:18:43.589+0000] {get_weather_data.py:47} INFO - Decompression successful!
+[2023-03-25T20:18:43.589+0000] {get_weather_data.py:54} INFO - Parsing json weather data...
+[2023-03-25T20:18:43.748+0000] {get_weather_data.py:56} INFO - Parsing successful!
+[2023-03-25T20:18:43.776+0000] {logging_mixin.py:137} INFO -       cc      desciel  dh dirvienc  ...    raf   tmax   tmin  velvien
+0  21.86  Poco nuboso   6      Sur  ...  21.96  31.64  11.59     6.38
+1  24.29  Poco nuboso   6      Sur  ...  19.06  31.55  12.25     6.97
+2  13.22  Poco nuboso   6      Sur  ...  17.90  31.09  11.83     7.77
+3  19.72  Poco nuboso   6  Sureste  ...  18.88  31.05  13.97     7.00
+4  12.05  Poco nuboso   6      Sur  ...  16.89  30.37  13.38     6.30
+
+[5 rows x 19 columns]
+[2023-03-25T20:18:43.777+0000] {get_weather_data.py:69} INFO - Writing current data...
+[2023-03-25T20:18:43.883+0000] {get_weather_data.py:85} ERROR - An error occurred when trying to retrieve the weather data. Error:
+[Errno 13] Permission denied: '/data/weather/raw/current_weather_data.parquet'
+[2023-03-25T20:18:43.883+0000] {taskinstance.py:1775} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/get_weather_data.py", line 70, in download_weather_data
+    data.to_parquet(path=f"{base_output_path}/raw/current_weather_data.parquet", engine="pyarrow", index=False)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/util/_decorators.py", line 207, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/frame.py", line 2685, in to_parquet
+    **kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parquet.py", line 423, in to_parquet
+    **kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parquet.py", line 180, in write
+    is_dir=partition_cols is not None,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parquet.py", line 102, in _get_path_or_handle
+    path_or_handle, mode, is_text=False, storage_options=storage_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/common.py", line 711, in get_handle
+    handle = open(handle, ioargs.mode)
+PermissionError: [Errno 13] Permission denied: '/data/weather/raw/current_weather_data.parquet'
+[2023-03-25T20:18:43.895+0000] {taskinstance.py:1326} INFO - Marking task as UP_FOR_RETRY. dag_id=get_weather_data_v0, task_id=download_weather_data, execution_date=20230325T190000, start_date=20230325T201842, end_date=20230325T201843
+[2023-03-25T20:18:43.920+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 3 for task download_weather_data ([Errno 13] Permission denied: '/data/weather/raw/current_weather_data.parquet'; 210)
+[2023-03-25T20:18:43.977+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-03-25T20:18:44.004+0000] {taskinstance.py:2585} INFO - 0 downstream tasks scheduled from follow-on schedule check
