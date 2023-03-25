@@ -106,28 +106,42 @@ def agg_weather_data(**kwargs):
             row = row.replace(key, val)
         return row
 
-    history = pd.read_parquet(path=f"{base_output_path}/raw/historic_weather_data.parquet", engine="pyarrow")
+    logging.info("Reading historic weather data file...")
+    history = pd.read_parquet(path=f"{base_output_path}/raw/historic_weather_data.parquet")
 
     history["table_name"] = (history.nes.astype(str) + "_" + history.nmun.astype(str)).str.lower().apply(clean_name)
 
+    logging.info(f"Preparing state and municipality names for table names...\nFiles will be saved at {base_output_path}/processed/")
     for table in history["table_name"].unique():
         mun_data = history.loc[(history["table_name"] == table) & (history["date_process"] >= (agg_start_time + timedelta(hours=-2))), :].copy()
         agg_mun_data = mun_data.groupby(["dloc", "ides", "idmun", "ndia", "nes", "nmun"]).agg({"tmin": np.mean, "tmax": np.mean}).reset_index()
         agg_mun_data['date_process'] = datetime.now()
         agg_mun_data.to_parquet(path=f"{base_output_path}/processed/{table}_avg_t.parquet", index=False)
+        logging.info(f"Successfully saved {table}_avg_t.parquet!")
 
 def merge_weather_data(**kwargs):
     base_output_path = kwargs['base_output_path']
 
+    logging.info("Loading current weather data file...")
     current_data = pd.read_parquet(path=f"{base_output_path}/raw/current_weather_data.parquet")
-    aux_data = pd.read_csv(f"{base_output_path}/current/raw_data_merge.csv")
+    logging.info("Loading AUX csv file for merge...")
+    try:
+        aux_data = pd.read_csv(f"{base_output_path}/current/raw_data_merge.csv")
+    except Exception as e:
+        logging.error(f"Failed to load CSV file.\nError: {str(e)}")
+        raise
 
-    merged_data = current_data.merge(aux_data, left_on=["ides", "idmun"], right_on=["Cve_Ent", "Cve_Mun"], how="left")
+    logging.info("Merging files...")
+    try:
+        merged_data = current_data.merge(aux_data, left_on=["ides", "idmun"], right_on=["Cve_Ent", "Cve_Mun"], how="left")
+        merged_data.drop(columns=["Cve_Ent", "Cve_Mun"], inplace=True)
+    except Exception as e:
+        logging.error(f"Failed to merve CSV file into current weather data.\nError: {str(e)}")
+        raise
 
-    merged_data.drop(columns=["Cve_Ent", "Cve_Mun"], inplace=True)
-
+    logging.info("Saving merged file...")
     merged_data.to_parquet(path=f"{base_output_path}/current/current_weather_data_merged")
-    
+    logging.info(f"Saved file successfully at {base_output_path}/current/current_weather_data_merged")
 
 with DAG(
     dag_id="get_weather_data_v0",
